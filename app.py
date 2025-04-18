@@ -17,30 +17,10 @@ RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 SMTP_USERNAME = os.getenv("SMTP_USERNAME")
 
 
-def get_wallets():
-    try:
-        # Try to fetch from DePay (fallback to local list if failed)
-        url = "https://unpkg.com/@depay/web3-wallets@18.0.4/dist/umd/index.js"
-        js_code = requests.get(url).text
-        match = re.search(r'wallets:\s*({.*?}),\n', js_code, re.DOTALL)
-        if match:
-            wallets_js = match.group(1).replace("'", '"')
-            wallets_js = re.sub(r'(\w+):', r'"\1":', wallets_js)
-            return json.loads(f"{{{wallets_js}}}")
-    except:
-        pass
-
-    # Fallback to local data
-    return [
-        {"name": "MetaMask", "image": "https://cdn.depay.com/web3-wallets/metamask.png", "url": "https://metamask.io"},
-        {"name": "Trust Wallet", "image": "https://cdn.depay.com/web3-wallets/trust.png",
-         "url": "https://trustwallet.com"}
-    ]
 
 @app.route("/")
 def wallets():
-    wallets = get_wallets()
-    return render_template("wallets.html", wallets=wallets)
+    return render_template("wallets.html")
 @app.route("/hi")
 def index():
     return render_template("index.html")

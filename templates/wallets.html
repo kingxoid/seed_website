@@ -1,34 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Web3 Wallets</title>
-    <style>
-        .wallet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-        .wallet-card {
-            cursor: pointer;
-            text-align: center;
-        }
-        .wallet-img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Wallets</title>
+  <style>
+    .wallet-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .wallet-card {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .wallet-card:hover {
+      transform: scale(1.05);
+    }
+    .wallet-img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+    .wallet-name {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h1>Connect a Wallet</h1>
-    <div class="wallet-grid">
-        {% for wallet in wallets %}
-        <div class="wallet-card" onclick="window.open('{{ wallet.url }}', '_blank')">
-            <img src="{{ wallet.image }}" alt="{{ wallet.name }}" class="wallet-img">
-            <p>{{ wallet.name }}</p>
-        </div>
-        {% endfor %}
-    </div>
+  <h1 style="text-align: center;">Choose Your Web3 Wallet</h1>
+
+  <div class="wallet-container" id="walletContainer"></div>
+
+  <script>
+    fetch('static/wallets.json') // make sure this file is in the same directory
+      .then(response => response.json())
+      .then(wallets => {
+        const container = document.getElementById('walletContainer');
+        wallets.forEach(wallet => {
+          const card = document.createElement('div');
+          card.className = 'wallet-card';
+          card.onclick = () => window.location.href = '/connect';
+
+          card.innerHTML = `
+            <img src="${wallet.logo}" alt="${wallet.name}" class="wallet-img">
+            <div class="wallet-name">${wallet.name}</div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error('Failed to load wallets.json:', err));
+  </script>
 </body>
 </html>
