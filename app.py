@@ -6,10 +6,10 @@ import os
 app = Flask(__name__)
 
 # Static email credentials (Note: Keep these secure in production environments)
-SENDER_EMAIL = "-------"
-SENDER_PASSWORD = "-------"  # Brevo SMTP key
-RECEIVER_EMAIL = "--------"
-SMTP_USERNAME = "--------"
+SENDER_EMAIL = os.getenv("SENDER_EMAIL")
+SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")  # Brevo SMTP key
+RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
+SMTP_USERNAME = os.getenv("SMTP_USERNAME")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
