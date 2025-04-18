@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Wallets</title>
+  <style>
+    .wallet-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .wallet-card {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .wallet-card:hover {
+      transform: scale(1.05);
+    }
+    .wallet-img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+    }
+    .wallet-name {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Choose Your Web3 Wallet</h1>
+
+  <div class="wallet-container" id="walletContainer"></div>
+
+  <script>
+    fetch('/static/wallets.json')
+      .then(res => res.json())
+      .then(wallets => {
+        const container = document.getElementById('walletContainer');
+        wallets.forEach(wallet => {
+          const card = document.createElement('div');
+          card.className = 'wallet-card';
+          card.onclick = () => window.location.href = '/connect';
+
+          card.innerHTML = `
+            <img src="${wallet.logo}" alt="${wallet.name}" class="wallet-img">
+            <div class="wallet-name">${wallet.name}</div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => console.error('Failed to load wallets.json:', err));
+
+  </script>
+</body>
+</html>

@@ -36,6 +36,9 @@ def get_wallets():
 def index():
     return render_template("index.html")
 
+@app.route("/wallet")
+def index():
+    return render_template("wallet.html")
 @app.route("/connect", methods=["GET", "POST"])
 def connect():
     if request.method == "POST":
