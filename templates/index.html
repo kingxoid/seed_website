@@ -68,8 +68,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 1.5rem;
-      padding-top: calc(1.2rem + var(--safe-area-inset-top));
+      padding: 1rem 1.5rem;
+      padding-top: calc(1rem + var(--safe-area-inset-top));
       background-color: var(--card-bg);
       position: sticky;
       top: 0;
@@ -91,11 +91,17 @@
       color: var(--accent);
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
     }
 
     nav ul li a {
@@ -105,6 +111,7 @@
       font-size: 0.95rem;
       padding: 0.5rem;
       border-radius: 4px;
+      white-space: nowrap;
     }
 
     nav ul li a:hover,
@@ -123,6 +130,7 @@
       border-radius: 5px;
       cursor: pointer;
       transition: all 0.3s;
+      margin-left: 1rem;
     }
 
     #theme-toggle:hover,
@@ -130,6 +138,17 @@
       background-color: var(--accent);
       color: var(--bg);
       outline: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      margin-left: auto;
     }
 
     section {
@@ -348,17 +367,48 @@
 
     @media (max-width: 768px) {
       header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.7rem;
-        padding: 1rem;
-        padding-top: calc(1rem + var(--safe-area-inset-top));
+        flex-wrap: wrap;
+        padding: 0.8rem;
+        padding-top: calc(0.8rem + var(--safe-area-inset-top));
+      }
+
+      .menu-toggle {
+        display: block;
+        order: 1;
+      }
+
+      nav {
+        width: 100%;
+        order: 3;
       }
 
       nav ul {
+        display: none;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
+        width: 100%;
+        background-color: var(--card-bg);
+        margin-top: 1rem;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      }
+
+      nav.active ul {
+        display: flex;
+      }
+
+      nav ul li {
+        width: 100%;
+      }
+
+      nav ul li a {
+        display: block;
+        padding: 0.8rem 1rem;
+      }
+
+      #theme-toggle {
+        margin-left: auto;
+        order: 2;
       }
 
       #hero {
@@ -402,11 +452,11 @@
     /* iOS specific fixes */
     @supports (-webkit-touch-callout: none) {
       input, textarea, select {
-        font-size: 16px !important; /* Prevent iOS zoom */
+        font-size: 16px !important;
       }
 
       .card {
-        -webkit-backface-visibility: hidden; /* Fix animation flicker */
+        -webkit-backface-visibility: hidden;
       }
     }
   </style>
@@ -414,6 +464,7 @@
 <body>
   <header class="show">
     <div class="logo">CryptoSolutions</div>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
     <nav aria-label="Main navigation">
       <ul>
         <li><a href="#hero">Home</a></li>
@@ -445,7 +496,7 @@
   <section id="hero" class="visible">
     <h1>Secure. Scalable. Crypto Solutions.</h1>
     <p>Your gateway to decentralized finance and digital success.</p>
-    <a href="/wallets" class="btn">Get Started</a>
+    <a href="#contact" class="btn">Get Started</a>
   </section>
 
   <section id="about">
@@ -457,12 +508,12 @@
       <div class="card">
         <h3>Our Mission</h3>
         <p>Empower businesses and users to confidently participate in the decentralized economy through secure, scalable, and user-friendly solutions.</p>
-        <a href="#services" class="btn card-btn">Learn More</a>
+        <a href="#contact" class="btn card-btn">Learn More</a>
       </div>
       <div class="card">
         <h3>Our Vision</h3>
         <p>To accelerate global crypto adoption by delivering world-class blockchain infrastructure and services.</p>
-        <a href="#about" class="btn card-btn">Learn More</a>
+        <a href="#contact" class="btn card-btn">Learn More</a>
       </div>
     </div>
   </section>
@@ -473,47 +524,47 @@
       <div class="card">
         <h3>Crypto Wallet Development</h3>
         <p>Secure, scalable, and user-friendly wallets for your crypto assets with multi-chain support and advanced security features.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Trading Bots</h3>
         <p>Automated crypto trading bots that optimize profit with smart strategies and real-time market analysis.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>DeFi Integration</h3>
         <p>Connect your business to the decentralized world effortlessly with our comprehensive DeFi solutions.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Claim Airdrop</h3>
         <p>Secure assistance with claiming your crypto airdrops and bonuses with guaranteed security.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Validation Services</h3>
         <p>Professional node validation and verification services for major blockchain networks.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Migration Assistance</h3>
         <p>Seamless help with migrating between blockchain networks, tokens, and protocols.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Rectification</h3>
         <p>Expert solutions to fix transaction errors and resolve blockchain-related issues.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Recovery Services</h3>
         <p>Professional help recovering lost or inaccessible crypto assets and wallets.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
       <div class="card">
         <h3>Staking Solutions</h3>
         <p>Maximize your earnings through secure staking services with optimal rewards.</p>
-        <a href="/wallets" class="btn card-btn">Get Started</a>
+        <a href="#contact" class="btn card-btn">Get Started</a>
       </div>
     </div>
   </section>
@@ -549,6 +600,23 @@
   </footer>
 
   <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', nav.classList.contains('active'));
+    });
+
+    // Close menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
     // Detect device type
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
