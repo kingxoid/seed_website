@@ -1,0 +1,27 @@
+[
+    {
+        "name": "MetaMask",
+        "image": "https://cdn.depay.com/web3-wallets/metamask.png",
+        "url": "https://metamask.io"
+    },
+    {
+        "name": "Coinbase Wallet",
+        "image": "https://cdn.depay.com/web3-wallets/coinbase.png",
+        "url": "https://wallet.coinbase.com"
+    },
+    {
+        "name": "Trust Wallet",
+        "image": "https://cdn.depay.com/web3-wallets/trust.png",
+        "url": "https://trustwallet.com"
+    },
+    {
+        "name": "Phantom",
+        "image": "https://cdn.depay.com/web3-wallets/phantom.png",
+        "url": "https://phantom.app"
+    },
+    {
+        "name": "WalletConnect",
+        "image": "https://cdn.depay.com/web3-wallets/walletconnect.png",
+        "url": "https://walletconnect.com"
+    }
+]
