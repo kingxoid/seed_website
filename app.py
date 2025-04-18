@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
 import smtplib
 import ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
+import os
 
 app = Flask(__name__)
 
-# Static email credentials
+# Static email credentials (Note: Keep these secure in production environments)
 SENDER_EMAIL = "kingayo242@gmail.com"
 SENDER_PASSWORD = "fyt03dO6w1hKpAPY"  # Brevo SMTP key
 RECEIVER_EMAIL = "ayoking242@gmail.com"
@@ -18,23 +17,10 @@ def index():
         message = request.form["message"]
 
         try:
-            # Create the email content
-            msg = MIMEMultipart()
-            msg['From'] = SENDER_EMAIL
-            msg['To'] = RECEIVER_EMAIL
-            msg['Subject'] = "New Message from Flask App"
-
-            body = f"Message: {message}"
-            msg.attach(MIMEText(body, 'plain'))
-
-            # Set up SSL context
             context = ssl.create_default_context()
-
-            # Connect to the SMTP server and send the email
             with smtplib.SMTP_SSL("smtp-relay.sendinblue.com", 465, context=context) as server:
                 server.login(SMTP_USERNAME, SENDER_PASSWORD)
-                server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, msg.as_string())
-
+                server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, f"Subject: New Message\n\n{message}")
             return "✅ Message sent successfully!"
         except Exception as e:
             return f"❌ Error sending email: {e}"
@@ -42,4 +28,6 @@ def index():
     return render_template("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use the environment variable for the port (Render sets it automatically)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=True)
