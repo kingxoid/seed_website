@@ -9,31 +9,31 @@
   },
   {
     "name": "Coinbase Wallet",
-    "logo": "https://images.ctfassets.net/c5bd0wqjc7v0/3dFdYiwjWRkW5KQEJQEZGZ/5d7f505ba149db3c83ad979e6e6525a3/icon.png"
+    "logo": "static/logos/coinbase.svg"
   },
   {
     "name": "Phantom",
-    "logo": "https://phantom.app/static/phantom-logo.png"
+    "logo": "static/logos/Phantom.svg"
   },
   {
     "name": "Rainbow",
-    "logo": "https://rainbow.me/assets/images/logo.png"
+    "logo": "static/logos/Rainbow.png"
   },
   {
     "name": "Zengo",
-    "logo": "https://zengo.com/wp-content/uploads/2020/05/zengo-logo.svg"
+    "logo": "static/logos/zengo.png"
   },
   {
     "name": "Rabby Wallet",
-    "logo": "https://rabby.io/assets/logo.png"
+    "logo": "static/logos/rabby.jpeg"
   },
   {
     "name": "Binance Wallet",
-    "logo": "https://www.binance.org/static/images/binance-logo.svg"
+    "logo": "static/logos/Binance.svg"
   },
   {
     "name": "Crypto.com DeFi Wallet",
-    "logo": "https://crypto.com/images/defi_wallet_logo.png"
+    "logo": "static/logos/crypto_com.jpeg"
   },
   {
     "name": "1inch Wallet",
@@ -41,19 +41,19 @@
   },
   {
     "name": "Backpack",
-    "logo": "https://backpack.app/assets/logo.png"
+    "logo": "static/logos/backpack.jpeg"
   },
   {
     "name": "Ledger Live",
-    "logo": "https://www.ledger.com/wp-content/uploads/2021/03/ledger-live-logo.svg"
+    "logo": "static/logos/ledger.svg"
   },
   {
     "name": "MathWallet",
-    "logo": "https://mathwallet.org/img/logo.png"
+    "logo": "static/logos/mathwallet.png"
   },
   {
     "name": "iToken Wallet",
-    "logo": "https://itoken.com/assets/logo.png"
+    "logo": "static/logos/itoken.jpeg"
   },
   {
     "name": "Huddln",
