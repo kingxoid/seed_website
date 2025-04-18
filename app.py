@@ -18,10 +18,10 @@ SMTP_USERNAME = os.getenv("SMTP_USERNAME")
 
 
 
-@app.route("/")
+@app.route("/wallets")
 def wallets():
     return render_template("wallets.html")
-@app.route("/hi")
+@app.route("/")
 def index():
     return render_template("index.html")
 
