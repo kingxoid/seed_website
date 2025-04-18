@@ -31,7 +31,7 @@ def index():
             context = ssl.create_default_context()
 
             # Connect to the SMTP server and send the email
-            with smtplib.SMTP_SSL("smtp-relay.sendinblue.com", 465, context=context) as server:
+            with smtplib.SMTP_SSL("smtp-relay.sendinblue.com", 587, context=context) as server:
                 server.login(SMTP_USERNAME, SENDER_PASSWORD)
                 server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, msg.as_string())
 
