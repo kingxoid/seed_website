@@ -31,7 +31,9 @@ def index():
             context = ssl.create_default_context()
 
             # Connect to the SMTP server and send the email
-            with smtplib.SMTP_SSL("smtp-relay.sendinblue.com", 587, context=context) as server:
+
+            with smtplib.SMTP("smtp-relay.sendinblue.com", 587) as server:
+                server.starttls()  # Use TLS encryption
                 server.login(SMTP_USERNAME, SENDER_PASSWORD)
                 server.sendmail(SENDER_EMAIL, RECEIVER_EMAIL, msg.as_string())
 
