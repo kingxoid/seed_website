@@ -1,27 +1,162 @@
 [
-    {
-        "name": "MetaMask",
-        "image": "https://cdn.depay.com/web3-wallets/metamask.png",
-        "url": "https://metamask.io"
-    },
-    {
-        "name": "Coinbase Wallet",
-        "image": "https://cdn.depay.com/web3-wallets/coinbase.png",
-        "url": "https://wallet.coinbase.com"
-    },
-    {
-        "name": "Trust Wallet",
-        "image": "https://cdn.depay.com/web3-wallets/trust.png",
-        "url": "https://trustwallet.com"
-    },
-    {
-        "name": "Phantom",
-        "image": "https://cdn.depay.com/web3-wallets/phantom.png",
-        "url": "https://phantom.app"
-    },
-    {
-        "name": "WalletConnect",
-        "image": "https://cdn.depay.com/web3-wallets/walletconnect.png",
-        "url": "https://walletconnect.com"
-    }
+  {
+    "name": "MetaMask",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg"
+  },
+  {
+    "name": "Trust Wallet",
+    "logo": "https://trustwallet.com/assets/images/media/assets/TWT.png"
+  },
+  {
+    "name": "Coinbase Wallet",
+    "logo": "https://images.ctfassets.net/c5bd0wqjc7v0/3dFdYiwjWRkW5KQEJQEZGZ/5d7f505ba149db3c83ad979e6e6525a3/icon.png"
+  },
+  {
+    "name": "Phantom",
+    "logo": "https://phantom.app/static/phantom-logo.png"
+  },
+  {
+    "name": "Rainbow",
+    "logo": "https://rainbow.me/assets/images/logo.png"
+  },
+  {
+    "name": "Zengo",
+    "logo": "https://zengo.com/wp-content/uploads/2020/05/zengo-logo.svg"
+  },
+  {
+    "name": "Rabby Wallet",
+    "logo": "https://rabby.io/assets/logo.png"
+  },
+  {
+    "name": "Binance Wallet",
+    "logo": "https://www.binance.org/static/images/binance-logo.svg"
+  },
+  {
+    "name": "Crypto.com DeFi Wallet",
+    "logo": "https://crypto.com/images/defi_wallet_logo.png"
+  },
+  {
+    "name": "1inch Wallet",
+    "logo": "https://1inch.io/img/logo.svg"
+  },
+  {
+    "name": "Backpack",
+    "logo": "https://backpack.app/assets/logo.png"
+  },
+  {
+    "name": "Ledger Live",
+    "logo": "https://www.ledger.com/wp-content/uploads/2021/03/ledger-live-logo.svg"
+  },
+  {
+    "name": "MathWallet",
+    "logo": "https://mathwallet.org/img/logo.png"
+  },
+  {
+    "name": "iToken Wallet",
+    "logo": "https://itoken.com/assets/logo.png"
+  },
+  {
+    "name": "Huddln",
+    "logo": "https://huddln.io/assets/logo.png"
+  },
+  {
+    "name": "Eidoo",
+    "logo": "https://eidoo.io/images/eidoo-logo.svg"
+  },
+  {
+    "name": "Timeless Wallet",
+    "logo": "https://timelesswallet.com/assets/logo.png"
+  },
+  {
+    "name": "CoolWallet",
+    "logo": "https://coolwallet.io/wp-content/uploads/2021/05/coolwallet-logo.svg"
+  },
+  {
+    "name": "Unstoppable Wallet",
+    "logo": "https://unstoppablewallet.com/assets/logo.png"
+  },
+  {
+    "name": "AlphaWallet",
+    "logo": "https://alphawallet.com/assets/logo.png"
+  },
+  {
+    "name": "Pillar",
+    "logo": "https://pillarproject.io/assets/logo.png"
+  },
+  {
+    "name": "D'CENT Wallet",
+    "logo": "https://dcentwallet.com/assets/logo.png"
+  },
+  {
+    "name": "ZelCore",
+    "logo": "https://zelcore.io/assets/logo.png"
+  },
+  {
+    "name": "Nash",
+    "logo": "https://nash.io/assets/logo.png"
+  },
+  {
+    "name": "Coinomi",
+    "logo": "https://coinomi.com/assets/logo.png"
+  },
+  {
+    "name": "CYBAVO Wallet",
+    "logo": "https://cybavo.com/assets/logo.png"
+  },
+  {
+    "name": "Tokenary",
+    "logo": "https://tokenary.io/assets/logo.png"
+  },
+  {
+    "name": "Torus",
+    "logo": "https://tor.us/images/torus-logo.svg"
+  },
+  {
+    "name": "Keplr Wallet",
+    "logo": "https://wallet.keplr.app/assets/logo.png"
+  },
+  {
+    "name": "Leap Wallet",
+    "logo": "https://leapwallet.io/assets/logo.png"
+  },
+  {
+    "name": "World App",
+    "logo": "https://worldapp.com/assets/logo.png"
+  },
+  {
+    "name": "BitPay",
+    "logo": "https://bitpay.com/images/bitpay-logo.svg"
+  },
+  {
+    "name": "SafePal",
+    "logo": "https://safepal.io/assets/logo.png"
+  },
+  {
+    "name": "Argent",
+    "logo": "https://argent.xyz/assets/logo.png"
+  },
+  {
+    "name": "Gnosis Safe",
+    "logo": "https://gnosis-safe.io/assets/logo.png"
+  },
+  {
+    "name": "Trezor Suite",
+    "logo": "https://trezor.io/assets/logo.png"
+  },
+  {
+    "name": "Exodus",
+    "logo": "https://www.exodus.com/assets/logo.png"
+  },
+  {
+    "name": "MyEtherWallet",
+    "logo": "https://www.myetherwallet.com/images/logo.svg"
+  },
+  {
+    "name": "Atomic Wallet",
+    "logo": "https://atomicwallet.io/assets/logo.png"
+  },
+  {
+    "name": "Edge Wallet",
+    "logo": "https://edge.app/assets/logo.png"
+  }
 ]
