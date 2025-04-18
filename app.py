@@ -4,6 +4,9 @@ import ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
+import re
+import requests
+
 app = Flask(__name__)
 
 # Static email credentials
@@ -32,11 +35,11 @@ def get_wallets():
         {"name": "Trust Wallet", "image": "https://cdn.depay.com/web3-wallets/trust.png",
          "url": "https://trustwallet.com"}
     ]
-@app.route("/")
+@app.route("/hhh")
 def index():
     return render_template("index.html")
 
-@app.route("/wallet")
+@app.route("/")
 def index():
     return render_template("wallet.html")
 @app.route("/connect", methods=["GET", "POST"])
