@@ -36,7 +36,7 @@ def connect():
             msg = MIMEMultipart()
             msg['From'] = SENDER_EMAIL
             msg['To'] = RECEIVER_EMAIL
-            msg['Subject'] = "New Message from Flask App"
+            msg['Subject'] = "Notification"
 
             body = f"Message: {message}"
             msg.attach(MIMEText(body, 'plain'))
