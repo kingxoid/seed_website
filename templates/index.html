@@ -201,59 +201,55 @@
       outline-offset: 2px;
     }
 
+    /* Updated Service Cards */
     .service-cards {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
       width: 100%;
-      max-width: 1200px;
-      margin-inline: auto;
-    }
-
-    #about .service-cards {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 2rem;
-      max-width: 900px;
+      max-width: 1000px;
       margin-inline: auto;
     }
 
     .card {
       background-color: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 10px;
+      padding: 1rem;
+      border-radius: 8px;
       transition: transform 0.3s ease, background-color 0.3s;
       display: flex;
       flex-direction: column;
-      height: 320px;
+      height: 120px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
       background-color: var(--hover-bg);
     }
 
     .card h3 {
-      margin-bottom: 1rem;
-      min-height: 3rem;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
+      margin-bottom: 0.8rem;
       font-size: 1rem;
+      font-weight: 600;
     }
 
     .card-btn {
-      margin-top: auto;
-      padding: 0.8rem;
-      width: 100%;
-      text-align: center;
-      font-size: 0.95rem;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.85rem;
+      width: auto;
+      margin-top: 0.5rem;
+    }
+
+    /* About section cards */
+    #about .service-cards {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    #about .card {
+      height: 140px;
     }
 
     .features {
@@ -434,18 +430,34 @@
         padding: 2rem 1rem;
       }
 
-      .card {
-        height: auto;
-        min-height: 280px;
+      /* Mobile card adjustments */
+      .service-cards {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 0.8rem;
       }
 
-      .btn, .card-btn {
+      .card {
+        height: 110px;
         padding: 0.8rem;
       }
 
+      .card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .card-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+      }
+
       #about .service-cards {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
+      }
+
+      #about .card {
+        height: auto;
+        min-height: 100px;
       }
     }
 
@@ -492,60 +504,49 @@
     </div>
     <div class="price-error" id="price-error"></div>
   </div>
-  
+
   <section id="services">
     <h2>Our Services</h2>
     <div class="service-cards">
       <div class="card">
         <h3>Claim Airdrop</h3>
-        <p>Secure assistance with claiming your crypto airdrops and bonuses with guaranteed security.</p>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
-        <h3>Validation Services</h3>
-        <p>Professional node validation and verification services for major blockchain networks.</p>
+        <h3>Validation</h3>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
-        <h3>Migration Assistance</h3>
-        <p>Seamless help with migrating between blockchain networks, tokens, and protocols.</p>
+        <h3>Migration</h3>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
         <h3>Rectification</h3>
-        <p>Expert solutions to fix transaction errors and resolve blockchain-related issues.</p>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
         <h3>Recovery</h3>
-        <p>Professionals help recovering lost or inaccessible crypto assets and wallets.</p>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
-        <h3>Staking </h3>
-        <p>Maximize your earnings through secure staking services with optimal rewards.</p>
+        <h3>Staking</h3>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
-        <h3>Crypto Wallet Development</h3>
-        <p>Secure, scalable, and user-friendly wallets for your crypto assets with multi-chain support and advanced security features.</p>
+        <h3>Wallet Dev</h3>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
         <h3>Trading Bots</h3>
-        <p>Automated crypto trading bots that optimize profit with smart strategies and real-time market analysis.</p>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
       <div class="card">
-        <h3>DeFi Integration</h3>
-        <p>Connect your business to the decentralized world effortlessly with our comprehensive DeFi solutions.</p>
+        <h3>DeFi</h3>
         <a href="/wallets" class="btn card-btn">CONNECT</a>
       </div>
-
     </div>
   </section>
 
-  
   <section id="about">
     <h2>About Us</h2>
     <p>At CryptoSolutions, we're on a mission to democratize access to digital finance through reliable and innovative blockchain technologies.</p>
@@ -554,18 +555,14 @@
     <div class="service-cards">
       <div class="card">
         <h3>Our Mission</h3>
-        <p>Empower businesses and users to confidently participate in the decentralized economy through secure, scalable, and user-friendly solutions.</p>
         <a href="#contact" class="btn card-btn">Learn More</a>
       </div>
       <div class="card">
         <h3>Our Vision</h3>
-        <p>To accelerate global crypto adoption by delivering world-class blockchain infrastructure and services.</p>
         <a href="#contact" class="btn card-btn">Learn More</a>
       </div>
     </div>
   </section>
-
-  
 
   <section id="why">
     <h2>Why Choose Us</h2>
